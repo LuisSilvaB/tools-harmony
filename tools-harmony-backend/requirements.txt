@@ -1,0 +1,5 @@
+flask 
+flask-sqlalchemy
+flask-security[fsqla,common]
+sqlalchemy
+flask-sqlalchemy-lite
