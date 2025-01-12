@@ -1,5 +1,7 @@
-flask 
-flask-sqlalchemy
-flask-security[fsqla,common]
-sqlalchemy
-flask-sqlalchemy-lite
+flask == 2.0.1
+flask-cors == 3.0.10
+Werkzeug==2.2.2
+flask-jwt-extended
+flask-jwt-extended[asymmetric_crypto]
+python-dotenv
+marshmallow
