@@ -1,6 +1,4 @@
-<script lang="ts" setup name="HomePage">
-
-</script>
+<script lang="ts" name="home" setup></script>
 
 <template>
   <div class="p-2">

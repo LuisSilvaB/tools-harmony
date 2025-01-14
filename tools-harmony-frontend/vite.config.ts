@@ -6,7 +6,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import autoprefixer from 'autoprefixer'
 import tailwind from 'tailwindcss'
-import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,6 +14,7 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
   ],
+  base: '/',
   css: {
     postcss: {
       plugins: [

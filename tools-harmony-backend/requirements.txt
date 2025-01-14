@@ -5,3 +5,4 @@ flask-jwt-extended
 flask-jwt-extended[asymmetric_crypto]
 python-dotenv
 marshmallow
+supabase
