@@ -6,3 +6,4 @@ flask-jwt-extended[asymmetric_crypto]
 python-dotenv
 marshmallow
 supabase
+psycopg2-binary

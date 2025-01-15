@@ -16,6 +16,8 @@ import {
 import { useMutation } from '@tanstack/vue-query'
 import { loginUserByUserAndPassword } from '@/views/auth/login/services/login.service'
 import { saveToken } from '@/lib/jwt'
+import { toast } from 'vue3-toastify';
+import { AxiosError } from 'axios'
 import router from '@/router'
 
 const formMethods = useForm<LoginType>({
@@ -28,12 +30,33 @@ const formMethods = useForm<LoginType>({
 
 const mutation = useMutation({
   mutationFn: loginUserByUserAndPassword,
-  onSuccess: (data) => {
+  onSuccess: ({data}) => {
     saveToken(data.data.access_token)
     router.push('/dashboard')
+    toast.success('Login successful',{
+      position: 'top-right',
+      icon: '',
+      progress: 200,
+      autoClose: true,
+      toastId: 'loginToast',
+      isLoading: true,
+    })
   },
-  onError: (error) => {
-    console.error('Login failed:', error)
+  onMutate: () => {
+    toast.loading('Logging in...', {
+      position: 'top-right',
+      progress: 200,
+      autoClose: false,
+      toastId: 'loginToast',
+    })
+  },
+  onError: (error: AxiosError) => {
+    toast.remove('loginToast')
+    toast.error(`login failed ${(error?.response?.data as { error: string }).error}`, {
+      icon: '❌',
+      isLoading: false,
+      autoClose: 3000,
+    })
   },
 })
 

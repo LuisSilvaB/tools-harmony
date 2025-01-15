@@ -3,8 +3,7 @@ import { z } from 'zod'
 export const loginSchema = z.object({
   email: z
     .string()
-    .min(3, 'Username is too short, max 3 characteres')
-    .max(20, 'Username is too long, max 20 characteres'),
+    .max(50, 'Username is too long, max 20 characteres'),
   password: z
     .string()
     .min(3, 'Password is too short, max 3 characteres')

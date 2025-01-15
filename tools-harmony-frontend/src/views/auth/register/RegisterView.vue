@@ -17,6 +17,9 @@ import { SPhoneInput } from '@/components/ui/SPhoneInput'
 import { useMutation } from '@tanstack/vue-query'
 import { RegisterUserByUserAndPassword } from '@/views/auth/register/services/register.service'
 import { saveToken } from '@/lib/jwt'
+import { toast } from 'vue3-toastify';
+import { AxiosError } from 'axios'
+
 import router from '@/router'
 
 const formMethods = useForm<RegisterType>({
@@ -41,17 +44,40 @@ const formMethods = useForm<RegisterType>({
 
 const mutation = useMutation({
   mutationFn: RegisterUserByUserAndPassword,
-  onSuccess: (data) => {
+  onMutate: () => {
+    toast.loading('Registering...', {
+      delay: 0,
+      position: 'top-right',
+      icon: '🔵',
+      transition: 'bounce',
+      autoClose: false,
+      toastId: 'registeringToast',
+    })
+  },
+  onSuccess: ({ data }) => {
+    toast.update('registeringToast', {
+      render: 'Registered successfully',
+      type: 'success',
+      isLoading: false,
+      autoClose: 3000,
+    })
     saveToken(data.data.access_token)
     router.push('/dashboard')
   },
-  onError: (error) => {
-    console.error('Login failed:', error)
+  onError: (error:AxiosError) => {
+    console.log('Register error:', error.response?.data)
+    toast.update('registeringToast', {
+      render: `Register failed: ${(error?.response?.data as { error: string }).error}`,
+      type: 'error',
+      icon: '❌',
+      isLoading: false,
+      autoClose: 3000,
+    })
   },
 })
 
-
 const onSubmit = formMethods.handleSubmit((values) => {
+  console.log('Submitted values:', values)
   mutation.mutate(values)
 })
 
@@ -86,15 +112,15 @@ const onSubmit = formMethods.handleSubmit((values) => {
           </FormField>
         </div>
         <FormField v-slot="{ field }" name="phone">
-            <FormItem class="w-full">
-              <FormLabel for="phone">Phone</FormLabel>
-              <FormControl>
-                <SPhoneInput v-bind="field"  />
-              </FormControl>
-              <FormDescription>Phone is required</FormDescription>
-              <FormMessage />
-            </FormItem>
-          </FormField>
+          <FormItem class="w-full">
+            <FormLabel for="phone">Phone</FormLabel>
+            <FormControl>
+              <SPhoneInput v-bind="field" />
+            </FormControl>
+            <FormDescription>Phone is required</FormDescription>
+            <FormMessage />
+          </FormItem>
+        </FormField>
         <FormField v-slot="{ field }" name="email">
           <FormItem class="w-full">
             <FormLabel for="email">Email</FormLabel>
@@ -116,7 +142,12 @@ const onSubmit = formMethods.handleSubmit((values) => {
           </FormItem>
         </FormField>
         <p>You have an account? <a href="/auth/login" class="text-blue-500 underline">Login</a></p>
-        <Button> Login </Button>
+        <Button :disabled="mutation.isPending.value">
+          <span v-if="mutation.isPending.value">Register
+            <span v-if="mutation.isPending.value" class="loader"></span>
+          </span>
+          <span v-else>Register</span>
+        </Button>
       </form>
     </div>
 
@@ -125,3 +156,20 @@ const onSubmit = formMethods.handleSubmit((values) => {
     </div>
   </div>
 </template>
+
+<style>
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

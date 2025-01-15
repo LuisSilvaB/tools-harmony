@@ -3,7 +3,7 @@ import api from '@/lib/axios'
 import { getToken } from '@/lib/jwt'
 
 export const loginUserByUserAndPassword = ( credentials:LoginType ) => {
-  return api.post('/auth/login', credentials)
+  return api.post('/auth/login-by-email-password', credentials)
 }
 
 export const isAuthenticated = () => {

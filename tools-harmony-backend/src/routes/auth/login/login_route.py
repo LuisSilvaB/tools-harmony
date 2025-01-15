@@ -9,8 +9,11 @@ login_bp = Blueprint('login_bp', __name__)
 @login_bp.route('/login-by-email-password', methods=['POST'])
 @validate_schema(LoginSchemaByEmailPasswordSchema(), location='json')
 def login(data):
-    result = loginByUsernamePassword(data)
-    if result['success']:
-        return jsonify({"access_token": result}), 200
-    return jsonify({"msg": "Invalid credentials"}), 401
-
+    try:
+        result = loginByUsernamePassword(data)
+        if result['success']:
+            return jsonify({"data": result}), 200
+        else: 
+            return jsonify({"error": result['msg']}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 401

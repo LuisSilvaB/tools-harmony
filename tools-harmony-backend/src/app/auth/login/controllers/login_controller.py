@@ -5,4 +5,4 @@ login_service = LoginService()
 def loginByUsernamePassword(data):
   email = data['email']
   password = data['password']
-  return login_service.login(email, password)
+  return login_service.login_by_email_password(email, password)
