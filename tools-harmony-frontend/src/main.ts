@@ -7,6 +7,8 @@ import router from './router/index'
 import VueCookies from 'vue3-cookies';
 import { setupInterceptors } from './lib/axios'
 import Vue3Toasity, { type ToastContainerOptions } from 'vue3-toastify';
+import { CIcon } from '@coreui/icons-vue';
+import { ICONS } from './contants/icons'
 
 import './assets/index.css'
 import 'vue3-toastify/dist/index.css';
@@ -31,5 +33,8 @@ app.use(VueCookies, {
 app.use(Vue3Toasity, {
   autoClose: 3000,
 } as ToastContainerOptions);
+
+app.provide('icons', ICONS)
+app.component('CIcon', CIcon)
 
 app.mount('#app')

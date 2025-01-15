@@ -48,7 +48,6 @@ const mutation = useMutation({
     toast.loading('Registering...', {
       delay: 0,
       position: 'top-right',
-      icon: '🔵',
       transition: 'bounce',
       autoClose: false,
       toastId: 'registeringToast',

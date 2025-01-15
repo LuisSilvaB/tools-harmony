@@ -16,4 +16,5 @@ def login(data):
         else: 
             return jsonify({"error": result['msg']}), 400
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 401

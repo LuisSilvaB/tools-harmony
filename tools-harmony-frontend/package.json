@@ -16,6 +16,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@coreui/icons": "^3.0.1",
+    "@coreui/icons-vue": "^2.2.0",
     "@radix-icons/vue": "^1.0.0",
     "@tanstack/vue-query": "^5.64.0",
     "@vee-validate/zod": "^4.15.0",
