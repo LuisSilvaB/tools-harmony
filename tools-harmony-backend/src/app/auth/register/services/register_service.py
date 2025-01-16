@@ -29,24 +29,22 @@ class RegisterService:
             }).execute().data[0]
             
             # Create user role
-            self.permissionService.createUserRole(user.user.id, self.permission_admin_rol_id)
+            response = self.permissionService.createUserRole(user.user.id, self.permission_admin_rol_id)
             
             if not isinstance(newUser, dict):
                 raise TypeError("Expected newUser to be a dictionary")
-        
+
             # Get permissions 
-            permissions_data = self.permissionService.findPermissionsByUserId(user.user.id)
+            permissions_data = self.permissionService.findPermissionsByUserId(user.user.id, response.get('msg').get('ROL_ID'))
             
-            print(permissions_data)
-            
-            if not isinstance(permissions_data, list):
+            if not isinstance(permissions_data.get('permissions'), list):
                 raise TypeError("Expected permissions to be a list") 
             
             identity = {
                 "id": newUser["id"],
                 "name": f"{newUser['first_name']} {newUser['last_name']}",
                 "email": newUser["email"],
-                "permissions": jsonify(permissions_data)
+                "permissions": permissions_data.get('permissions')
             }
             
             access_token = create_access_token(identity=identity)
