@@ -1,7 +1,9 @@
-<script lang="ts" name="dashboard" setup></script>
+<script lang="ts" name="dashboard" setup>
+  import { Sidebar } from '@/components/layout/sidebar'
 
+</script>
 <template>
-  <div class="p-2">
-    <p class="text-2xl font-extrabold">Welcome to Dashboard Page!</p>
+  <div class="p-2 ">
+    <Sidebar />
   </div>
 </template>

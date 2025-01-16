@@ -14,7 +14,6 @@ register_bp = Blueprint('register_bp', __name__)
 def login(data):
     try: 
         result = registerByUsernamePassword(data)
-        print(result)
         if result['success']:
             return jsonify({"data": result}), 200
         else:

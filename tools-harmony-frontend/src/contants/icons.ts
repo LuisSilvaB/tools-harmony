@@ -6,7 +6,8 @@ import {
   cilBasket,
   cilBell,
   cilCalculator,
-  cilCalendar
+  cilCalendar,
+  cilSettings
 } from '@coreui/icons'
 
 export const ICONS = {
@@ -17,5 +18,6 @@ export const ICONS = {
   cilBasket,
   cilBell,
   cilCalculator,
-  cilCalendar
+  cilCalendar,
+  cilSettings
 }
