@@ -6,7 +6,7 @@
 
 <template >
   <SidebarProvider>
-    <Sidebar variant="sidebar" collapsible="icon" class="bg-gray-50 max-h-screen">
+    <Sidebar variant="inset" collapsible="icon" class="bg-gray-50 max-h-screen">
       <div class="flex flex-row justify-between gap-4 p-1 items-center ">
         <SidebarHeader />
         <SidebarTrigger></SidebarTrigger>

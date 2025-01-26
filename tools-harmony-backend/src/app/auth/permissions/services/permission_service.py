@@ -7,7 +7,8 @@ class PermissionService:
     def findPermissionsByUserId(self, user_id, rol_id): 
         try:
             
-            response = self.supabase.from_('USER_ROL').select('ROL_ID(ROL_PERMISSION(PERMISSIONS(*)))').eq("USER_ID", user_id).execute().data[0]
+            # response = self.supabase.from_('USER_ROL').select('ROL_ID(ROL_PERMISSION(PERMISSIONS(*)))').eq("ROL_ID", rol_id).execute().data[0]
+            response = self.supabase.from_('ROLES').select('ROL_PERMISSION(PERMISSIONS(*))').eq("id", rol_id).execute().data[0] 
             user_rol = response
             
             # Verificar que rol_permissions_data es una lista

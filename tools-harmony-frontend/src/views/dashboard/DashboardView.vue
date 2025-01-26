@@ -19,8 +19,8 @@
 
 </script>
 <template>
-  <div class="p-2 ">
-    {{payload}}
+  <div class = "flex flex-1 h-full flex-row">
+    <router-view />
     <Sidebar />
   </div>
 </template>
