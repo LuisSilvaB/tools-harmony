@@ -3,7 +3,6 @@
   import { useSidebar } from '@/components/ui/sidebar/utils'
   import { cn } from '@/lib/utils'
   const { open } = useSidebar()
-
 </script>
 
 <template>

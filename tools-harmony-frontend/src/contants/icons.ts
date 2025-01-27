@@ -7,7 +7,8 @@ import {
   cilBell,
   cilCalculator,
   cilCalendar,
-  cilSettings
+  cilSettings,
+  cilFlipToBack
 } from '@coreui/icons'
 
 export const ICONS = {
@@ -19,5 +20,6 @@ export const ICONS = {
   cilBell,
   cilCalculator,
   cilCalendar,
-  cilSettings
+  cilSettings,
+  cilFlipToBack
 }

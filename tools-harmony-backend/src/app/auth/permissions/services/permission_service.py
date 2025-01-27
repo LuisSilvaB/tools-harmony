@@ -27,7 +27,15 @@ class PermissionService:
             return {"success": True, "permissions": permissions}
         except Exception as e:
             return {"success": False, "msg": str(e)}
-    
+    def findPermissionByUserId(self, user_id):
+        try: 
+            response = self.supabase.from_('USER_ROL').select('ROL_ID(ROL_PERMISSION(PERMISSIONS(*)))').eq("USER_ID", user_id).execute().data[0]
+            if not isinstance(response, dict):
+                raise TypeError("Expected response to be a dictionary")
+            rol_permission_details = response.get('ROL_ID')
+            return {"success": True, "rol_permission_details": rol_permission_details}
+        except Exception as e:
+            return {"success": False, "msg": str(e)}
     def createUserRole(self, user_id, rol_id):
         try:
             response = self.supabase.table('USER_ROL').insert({

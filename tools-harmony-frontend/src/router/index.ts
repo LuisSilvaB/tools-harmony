@@ -13,7 +13,7 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: HomeView,
-      meta:{
+      meta: {
         requiresAuth: true,
       }
     },
@@ -26,7 +26,7 @@ const router = createRouter({
       path: '/auth/register',
       name: 'register',
       component: RegisterView,
-      meta:{
+      meta: {
         requiresAuth: false,
       }
     },
@@ -34,7 +34,7 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: DashboardView,
-      meta:{
+      meta: {
         requiresAuth: true,
       },
       children: [
@@ -42,7 +42,7 @@ const router = createRouter({
           path: 'transform-image',
           name: 'transform-image',
           component: TransformImageView,
-          meta:{
+          meta: {
             requiresAuth: true,
           }
         },

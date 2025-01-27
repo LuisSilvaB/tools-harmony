@@ -10,13 +10,20 @@ class LoginService:
             userSign = self.supabase.auth.sign_in_with_password({"email": email, "password": password})
             if not userSign:
                 raise ValueError("Invalid email or password")
-            userData = self.supabase.from_('USERS').select('id, first_name, last_name, email').eq('email', email).execute().data[0]
+            userData = self.supabase.from_('USERS').select('id, first_name, last_name, email, USER_ROL(ROLES(ROL_PERMISSION(PERMISSIONS(*))))').eq('email', email).execute().data[0]
             if not isinstance(userData, dict):
                 raise TypeError("Expected userData to be a dictionary")
+            
+            permissions = [
+                permission['PERMISSIONS']
+                for role in userData['USER_ROL']
+                for permission in role['ROLES']['ROL_PERMISSION']
+            ] 
             identity = {
                 "id": userData['id'],
                 "name": f"{userData['first_name']} {userData['last_name']}",
-                "email": userData['email']
+                "email": userData['email'],
+                "permissions": permissions
             }
             access_token = create_access_token(identity=identity)
             return {"success": True, "access_token": access_token}
