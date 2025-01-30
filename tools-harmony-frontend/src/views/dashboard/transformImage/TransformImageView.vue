@@ -30,7 +30,7 @@ const handleDrop = (event: DragEvent) => {
   dragState.isDragging = false;
   const files = event.dataTransfer?.files;
   if (files) {
-    dragState.files = Array.from(files);
+    dragState.files = [...dragState.files, ...Array.from(files)];
     console.log('Dropped files:', dragState.files);
   }
 };
@@ -61,8 +61,12 @@ console.log("dragState.files", dragState.files);
     </div>
     <div @drop="handleDrop" @dragstart="handleDragStart" @dragover="handleDragOver" @dragleave="handleDragLeave"
       @click="onOpenInputFile" @dragover.prevent
-      class="flex justify-center items-center flex-1 w-65 h-64 border border-dashed border-gray-300 hover:border-green-500 hover:cursor-pointer transition-all ease-in-out rounded-md">
-      <p>List of images</p>
+      class="flex justify-center items-center flex-1 w-65 h--auto">
+      <ul v-for="file in dragState.files" :key="file.name" class="flex flex-col gap-2 w-full">
+        <li class="flex w-full justify-center items-center border">
+
+        </li>
+      </ul>
     </div>
   </div>
 </template>
