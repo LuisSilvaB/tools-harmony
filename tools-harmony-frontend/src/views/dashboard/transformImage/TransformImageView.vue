@@ -53,18 +53,17 @@ console.log("dragState.files", dragState.files);
 <template>
   <div class="w-full flex-1 p-2 flex justify-center items-start border rounded-md gap-2 relative">
     <div v-if="dragState.isDragging"
-      class="flex justify-center items-center flex-1 w-65 border border-dashed border-gray-300 bg-green-400 hover:cursor-pointer transition-all ease-in-out rounded-md absolute w-full h-full"
+      class="z-50 flex justify-center items-center flex-1 w-65 border border-dashed border-gray-300 bg-green-400 hover:cursor-pointer transition-all ease-in-out rounded-md absolute w-full h-full"
       @drop="handleDrop" @dragstart="handleDragStart" @dragover="handleDragOver" @dragleave="handleDragLeave"
       @click="onOpenInputFile" @dragover.prevent>
       <p>Drop your images here...</p>
       <input type="file" ref="refUpload" class="hidden" @change="handleFileUpload">
     </div>
-    <div @drop="handleDrop" @dragstart="handleDragStart" @dragover="handleDragOver" @dragleave="handleDragLeave"
-      @click="onOpenInputFile" @dragover.prevent
-      class="flex justify-center items-center flex-1 w-65 h--auto">
-      <ul v-for="file in dragState.files" :key="file.name" class="flex flex-col gap-2 w-full">
-        <li class="flex w-full justify-center items-center border">
-
+    <div v-else class="hidden"></div>
+    <div  @dragstart="handleDragStart" @dragover="handleDragOver" @dragover.prevent class="flex  flex-1 h-full cursor-pointer">
+      <ul class="flex flex-col gap-2 w-full h-full justify-start items-start p-2">
+        <li v-for="file in dragState.files" :key="file.name" class="flex w-full justify-center items-center">
+          Drop your images here...
         </li>
       </ul>
     </div>
