@@ -9,7 +9,6 @@ const permissions = getPermissionsByJwt().filter(permission => !permission.id_pe
   {...permission, description: upperLowerCase( permission.description ?? '') }
 ))) ?? []
 const { open } = useSidebar()
-console.log(permissions)
 </script>
 
 <template >

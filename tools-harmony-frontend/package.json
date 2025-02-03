@@ -19,6 +19,7 @@
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-vue": "^2.2.0",
     "@radix-icons/vue": "^1.0.0",
+    "@tanstack/react-table": "^8.20.6",
     "@tanstack/vue-query": "^5.64.0",
     "@vee-validate/zod": "^4.15.0",
     "@vueuse/core": "^12.4.0",
