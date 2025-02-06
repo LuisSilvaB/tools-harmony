@@ -1,16 +1,13 @@
 <script lang="ts" setup>
 import ImageTransformHeader from '@/views/dashboard/transformImage/components/layout/transformImgaHeader/transformImgaHeader.vue';
-import { type DragStateType } from './types/transformImage.type';
-import { ref, reactive } from 'vue';
+import { ref } from 'vue';
 import TransformImageTable from './components/ui/tables/transformImageTable.vue';
-
+import { useTransformImageStore } from './store';
 
 const refUpload = ref<HTMLInputElement | null>(null);
+const { setDraggingState, setFiles, transformImageState } = useTransformImageStore();
 
-const dragState = reactive<DragStateType>({
-  isDragging: false,
-  files: [] as File[],
-});
+
 
 const handleDragStart = (event: DragEvent) => {
   event.dataTransfer?.setData('image/jpeg', 'Dragged file');
@@ -18,32 +15,29 @@ const handleDragStart = (event: DragEvent) => {
 
 const handleDragOver = (event: DragEvent) => {
   event.preventDefault();
-  dragState.isDragging = true;
-  console.log('Dragged over:', event.dataTransfer?.files);
+  setDraggingState(true);
 };
 
 const handleDragLeave = (event: DragEvent) => {
   event.preventDefault();
   setTimeout(() => {
-    dragState.isDragging = false;
-  }, 2000);
+    setDraggingState(false);
+  }, 1000);
 };
 
 const handleDrop = (event: DragEvent) => {
   event.preventDefault();
-  dragState.isDragging = false;
+  setDraggingState(false);
   const files = event.dataTransfer?.files;
   if (files) {
-    dragState.files = [...dragState.files, ...Array.from(files)];
-    console.log('Dropped files:', dragState.files);
+    setFiles(Array.from(files));
   }
 };
 
 const handleFileUpload = (event: Event) => {
   const target = event.target as HTMLInputElement | null;
   if (target && target.files) {
-    dragState.files = [...dragState.files, ...Array.from(target.files)];
-    console.log('File uploaded:', dragState.files);
+    setFiles(Array.from(target.files));
   }
 };
 
@@ -51,7 +45,6 @@ const onOpenInputFile = () => {
   refUpload.value?.click();
 };
 
-console.log("dragState.files", dragState.files);
 </script>
 
 <template>
@@ -60,7 +53,7 @@ console.log("dragState.files", dragState.files);
       :onOpenInputFile="onOpenInputFile"
     />
     <TransformImageTable
-      :dragState="dragState"
+      :dragState="transformImageState"
       :handleDragStart="handleDragStart"
       :handleDragOver="handleDragOver"
       :handleDragLeave="handleDragLeave"

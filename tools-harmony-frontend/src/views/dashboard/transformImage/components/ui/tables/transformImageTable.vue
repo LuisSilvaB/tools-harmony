@@ -23,6 +23,14 @@ const getImageUrl = (file: File) => {
   return URL.createObjectURL(file);
 }
 
+const onTransformImages = (file: File[]) => {
+
+}
+
+const onTransformImage = (file: File) => {
+  
+}
+
 </script>
 
 <template>
