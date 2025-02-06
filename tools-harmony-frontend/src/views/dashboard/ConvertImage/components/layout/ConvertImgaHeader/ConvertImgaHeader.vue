@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import Button from '@/components/ui/button/Button.vue'
-  import UploadIcon from '@radix-icons/vue/UploadIcon'
+import UploadIcon from '@radix-icons/vue/UploadIcon'
   const props = defineProps<{
     onOpenInputFile: () => void
   }>()

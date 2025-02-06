@@ -4,7 +4,7 @@ import DashboardView from '@/views/dashboard/DashboardView.vue'
 import HomeView from '@/views/home/HomeView.vue'
 import LoginView from '@/views/auth/login/LoginView.vue'
 import RegisterView from '@/views/auth/register/RegisterView.vue'
-import TransformImageView from '@/views/dashboard/transformImage/TransformImageView.vue'
+import ConvertImageType from '@/views/dashboard/ConvertImage/ConvertImage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,9 +39,9 @@ const router = createRouter({
       },
       children: [
         {
-          path: 'transform-image',
-          name: 'transform-image',
-          component: TransformImageView,
+          path: 'convert-image-type',
+          name: 'convert-image-type',
+          component: ConvertImageType,
           meta: {
             requiresAuth: true,
           }

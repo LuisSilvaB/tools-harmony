@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import ImageTransformHeader from '@/views/dashboard/transformImage/components/layout/transformImgaHeader/transformImgaHeader.vue';
+import ConvertImageHeader from '@/views/dashboard/ConvertImage/components/layout/ConvertImgaHeader/ConvertImgaHeader.vue';
+import ConvertImageBody from '@/views/dashboard/ConvertImage/components/layout/ConvertImageBody/ConvertImageBody.vue';
 import { ref } from 'vue';
-import TransformImageTable from './components/ui/tables/transformImageTable.vue';
-import { useTransformImageStore } from './store';
+import { useConvertImageStore } from '@/views/dashboard/ConvertImage/store';
 
 const refUpload = ref<HTMLInputElement | null>(null);
-const { setDraggingState, setFiles, transformImageState } = useTransformImageStore();
+const { setDraggingState, setFiles, ConvertImageState } = useConvertImageStore();
 
 
 
@@ -49,11 +49,11 @@ const onOpenInputFile = () => {
 
 <template>
   <div class="w-full flex-1 flex-col  p-2 flex justify-center items-start rounded-md gap-1 relative">
-    <ImageTransformHeader
+    <ConvertImageHeader
       :onOpenInputFile="onOpenInputFile"
     />
-    <TransformImageTable
-      :dragState="transformImageState"
+    <ConvertImageBody
+      :dragState="ConvertImageState"
       :handleDragStart="handleDragStart"
       :handleDragOver="handleDragOver"
       :handleDragLeave="handleDragLeave"

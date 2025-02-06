@@ -1,7 +1,7 @@
-import type { DragStateType } from '../types/transformImage.type'
+import type { DragStateType } from './ConvertImage.type'
 
 export type State = {
-  transformImageState: DragStateType;
+  ConvertImageState: DragStateType;
 }
 
 export type Getters = {
@@ -11,6 +11,6 @@ export type Getters = {
 }
 
 export type Actions = {
-  setDraggingState: ( payload: boolean) => void;
-  setFiles: ( payload: File[] ) => void;
+  setDraggingState: (payload: boolean) => void;
+  setFiles: (payload: File[]) => void;
 }
