@@ -1,4 +1,4 @@
-import type { DragStateType } from './ConvertImage.type'
+import type { DragStateType } from './ConvertFile.type'
 
 export type State = {
   ConvertImageState: DragStateType;

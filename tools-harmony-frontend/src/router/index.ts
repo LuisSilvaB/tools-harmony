@@ -4,7 +4,7 @@ import DashboardView from '@/views/dashboard/DashboardView.vue'
 import HomeView from '@/views/home/HomeView.vue'
 import LoginView from '@/views/auth/login/LoginView.vue'
 import RegisterView from '@/views/auth/register/RegisterView.vue'
-import ConvertImageType from '@/views/dashboard/ConvertImage/ConvertImage.vue'
+import ConvertImageType from '@/views/dashboard/ConvertFile/ConvertFile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

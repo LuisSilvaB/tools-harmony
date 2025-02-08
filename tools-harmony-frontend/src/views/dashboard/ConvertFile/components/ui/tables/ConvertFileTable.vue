@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue';
-import { type DragStateType } from '@/views/dashboard/ConvertImage/types/ConvertImage.type';
+import { type DragStateType } from '@/views/dashboard/ConvertFile/types/ConvertFile.type';
 import TransformIcon from '@radix-icons/vue/TransformIcon'
 import DownloadIcon from '@radix-icons/vue/DownloadIcon'
 import TrashIcon from '@radix-icons/vue/TrashIcon'

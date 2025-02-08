@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import ConvertImageHeader from '@/views/dashboard/ConvertImage/components/layout/ConvertImgaHeader/ConvertImgaHeader.vue';
-import ConvertImageBody from '@/views/dashboard/ConvertImage/components/layout/ConvertImageBody/ConvertImageBody.vue';
+import ConvertImageHeader from '@/views/dashboard/ConvertFile/components/layout/ConvertFileHeader/ConvertFileHeader.vue';
+import ConvertImageBody from '@/views/dashboard/ConvertFile/components/layout/ConvertFileBody/ConvertFileBody.vue';
 import { ref } from 'vue';
-import { useConvertImageStore } from '@/views/dashboard/ConvertImage/store';
+import { useConvertImageStore } from '@/views/dashboard/ConvertFile/store';
 
 const refUpload = ref<HTMLInputElement | null>(null);
 const { setDraggingState, setFiles, ConvertImageState } = useConvertImageStore();
@@ -49,18 +49,10 @@ const onOpenInputFile = () => {
 
 <template>
   <div class="w-full flex-1 flex-col  p-2 flex justify-center items-start rounded-md gap-1 relative">
-    <ConvertImageHeader
-      :onOpenInputFile="onOpenInputFile"
-    />
-    <ConvertImageBody
-      :dragState="ConvertImageState"
-      :handleDragStart="handleDragStart"
-      :handleDragOver="handleDragOver"
-      :handleDragLeave="handleDragLeave"
-      :handleDrop="handleDrop"
-      :handleFileUpload="handleFileUpload"
-      :onOpenInputFile="onOpenInputFile"
-    />
+    <ConvertImageHeader :onOpenInputFile="onOpenInputFile" />
+    <ConvertImageBody :dragState="ConvertImageState" :handleDragStart="handleDragStart" :handleDragOver="handleDragOver"
+      :handleDragLeave="handleDragLeave" :handleDrop="handleDrop" :handleFileUpload="handleFileUpload"
+      :onOpenInputFile="onOpenInputFile" />
   </div>
   <input type="file" ref="refUpload" class="hidden" @change="handleFileUpload">
 </template>

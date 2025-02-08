@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { DragStateType } from '../types/ConvertImage.type'
+import type { DragStateType } from '../types/ConvertFile.type'
 import type { State, Getters, Actions } from '../types/store.type'
 
 export const useConvertImageStore = defineStore<'ConvertImage', State, Getters, Actions>('ConvertImage', {
