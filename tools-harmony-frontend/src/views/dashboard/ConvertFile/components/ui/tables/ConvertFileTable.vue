@@ -23,11 +23,11 @@ const getImageUrl = (file: File) => {
   return URL.createObjectURL(file);
 }
 
-const onTransformImages = (file: File[]) => {
-
+const onTransformImage = (file: File) => {
+  
 }
 
-const onTransformImage = (file: File) => {
+const onTransformImages = (file: File[]) => {
 
 }
 
@@ -49,8 +49,8 @@ const onTransformImage = (file: File) => {
             <th class="text-center p-2"></th>
             <th class="text-center p-2">File Name</th>
             <th class="text-center p-2">Type</th>
-            <th class="text-center p-2">Size</th>
             <th class="text-center p-2">Convert to</th>
+            <th class="text-center p-2">Size</th>
             <th class="text-center p-2">Actions</th>
           </tr>
         </thead>
@@ -60,9 +60,9 @@ const onTransformImage = (file: File) => {
               <img :src="getImageUrl(file)" class="w-20 h-20 rounded-md object-cover border">
             </td>
             <td class="text-center p-2 text-xs">{{ file.name }}</td>
+            <td class="text-center p-2">h</td>
             <td class="text-center p-2">{{ file.type }}</td>
             <td class="text-center p-2">{{ fromBytesToMegabytes(file.size) }} MB</td>
-            <td class="text-center p-2">h</td>
             <td class="">
               <div class="flex flex-row gap-2 justify-center items-center">
                 <Button size="icon" variant="default" class="flex flex-row gap-4 items-center p-2 text-white rounded"

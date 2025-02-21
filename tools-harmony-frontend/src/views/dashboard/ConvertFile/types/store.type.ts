@@ -13,4 +13,5 @@ export type Getters = {
 export type Actions = {
   setDraggingState: (payload: boolean) => void;
   setFiles: (payload: File[]) => void;
+  convertFile: (payload: File) => void;
 }

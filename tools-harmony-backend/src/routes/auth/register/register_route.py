@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from src.middlewares.validate_schema import validate_schema
-from psycopg2 import IntegrityError
 
 from ....app.auth.register.schemas.register_schema import RegisterSchemaByEmailPasswordSchema
 from ....app.auth.register.controllers.register_controller import registerByUsernamePassword
